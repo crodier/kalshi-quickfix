@@ -70,6 +70,11 @@
       <field name="EncodedText" required="N"/>
     </message>
     <message name="Logon" msgtype="A" msgcat="admin">
+      <!-- Add Kalshi custom fields here -->
+      <field name="ListenerSession" required="N"/>
+      <field name="SkipPendingExecReports" required="N"/>
+
+      <!-- standard fields -->
       <field name="EncryptMethod" required="Y"/>
       <field name="HeartBtInt" required="Y"/>
       <field name="RawDataLength" required="N"/>

@@ -55,7 +55,57 @@
       <field name="TradingSessionID" required="N"/>
       <field name="TradingSessionSubID" required="N"/>
     </message>
+
+    <!-- Market Settlement report - new Kalshi type - Settlement session -->
+    <message name="MarketSettlementReport" msgtype="UMS" msgcat="app">
+      <field name="MarketSettlementReportID" required="Y"/>
+      <field name="Symbol" required="Y"/>
+      <field name="TotNumMarketSettlementReports" required="N"/>
+      <field name="MarketResult" required="N"/>
+      <group name="NoMarketSettlementPartyIDs" required="N">
+        <field name="MarketSettlementPartyID" required="N"/>
+        <field name="MarketSettlementPartyRole" required="N"/>
+        <field name="LongQty" required="N"/>
+        <field name="ShortQty" required="N"/>
+        <group name="NoCollateralAmountChanges" required="N">
+          <field name="CollateralAmountChange" required="N"/>
+          <field name="CollateralAmountType" required="N"/>
+        </group>
+        <component name="MiscFeesGrp" required="N"/>
+      </group>
+      <field name="LastFragment" required="N"/>
+    </message>
+
+    <!-- three new Drop Copy resend request related message types we may not need -->
+    <!-- these could be used for catastrophic recovery - message loss -->
+    <!-- Event Resend Request - new Kalshi Type - for Drop Copy session -->
+    <message name="EventResendRequest" msgtype="U1" msgcat="app">
+      <field name="BeginExecID" required="Y"/>
+      <field name="EndExecID" required="N"/>
+    </message>
+
+    <!-- another drop copy resend related message we may never use - Kalshi -->
+    <message name="EventResendComplete" msgtype="U2" msgcat="app">
+      <field name="RefSeqNum" required="Y"/>
+<!--      <field name="ResentEventCount" required="Y"/>-->
+    </message>
+
+    <message name="EventResendReject" msgtype="U3" msgcat="app">
+      <field name="RefSeqNum" required="Y"/>
+      <field name="EventResendRejectReason" required="Y"/>
+    </message>
+    <!-- end of Kalshi resend request messages -->
+
     <message name="ExecutionReport" msgtype="8" msgcat="app">
+
+      <!-- Kalshi fields to add to ExecutionReport message -->
+      <field name="SelfTradePreventionType" required="N"/>
+      <group name="NoCollateralAmounts" required="N">
+        <field name="CurrentCollateralAmount" required="N"/>
+        <field name="CollateralType" required="N"/>
+      </group>
+
+      <!-- existing fields -->
       <component name="ApplicationSequenceControl" required="N"/>
       <field name="OrderID" required="Y"/>
       <field name="SecondaryOrderID" required="N"/>
@@ -2796,50 +2846,26 @@
       <field name="RegistRejReasonCode" required="N"/>
       <field name="RegistRejReasonText" required="N"/>
     </message>
+
+    <!-- new Kalshi Message -->
     <message name="OrderMassCancelRequest" msgtype="q" msgcat="app">
       <field name="ClOrdID" required="Y"/>
-      <field name="SecondaryClOrdID" required="N"/>
       <field name="MassCancelRequestType" required="Y"/>
-      <field name="TradingSessionID" required="N"/>
-      <field name="TradingSessionSubID" required="N"/>
-      <component name="Parties" required="N"/>
-      <component name="TargetParties" required="N"/>
-      <component name="Instrument" required="N"/>
-      <component name="UnderlyingInstrument" required="N"/>
-      <field name="MarketID" required="N"/>
-      <field name="MarketSegmentID" required="N"/>
-      <field name="Side" required="N"/>
-      <field name="TransactTime" required="Y"/>
-      <field name="Text" required="N"/>
-      <field name="EncodedTextLen" required="N"/>
-      <field name="EncodedText" required="N"/>
+      <field name="SecurityGroup" required="N"/>
     </message>
+
+    <!-- new Kalshi Message -->
     <message name="OrderMassCancelReport" msgtype="r" msgcat="app">
-      <field name="ClOrdID" required="N"/>
-      <field name="SecondaryClOrdID" required="N"/>
+      <field name="ClOrdID" required="Y"/>
       <field name="OrderID" required="Y"/>
-      <field name="MassActionReportID" required="Y"/>
-      <field name="SecondaryOrderID" required="N"/>
       <field name="MassCancelRequestType" required="Y"/>
       <field name="MassCancelResponse" required="Y"/>
-      <field name="MassCancelRejectReason" required="N"/>
-      <field name="TotalAffectedOrders" required="N"/>
-      <component name="AffectedOrdGrp" required="N"/>
-      <component name="NotAffectedOrdersGrp" required="N"/>
-      <field name="TradingSessionID" required="N"/>
-      <field name="TradingSessionSubID" required="N"/>
-      <component name="Parties" required="N"/>
-      <component name="TargetParties" required="N"/>
-      <component name="Instrument" required="N"/>
-      <component name="UnderlyingInstrument" required="N"/>
-      <field name="MarketID" required="N"/>
-      <field name="MarketSegmentID" required="N"/>
-      <field name="Side" required="N"/>
-      <field name="TransactTime" required="N"/>
-      <field name="Text" required="N"/>
-      <field name="EncodedTextLen" required="N"/>
-      <field name="EncodedText" required="N"/>
+      <field name="MassCancelRejectReason" required="Y"/>
+      <field name="SecurityGroup" required="N"/>
     </message>
+
+
+
     <message name="NewOrderCross" msgtype="s" msgcat="app">
       <field name="CrossID" required="Y"/>
       <field name="CrossType" required="Y"/>
@@ -5388,10 +5414,44 @@
     </component>
   </components>
   <fields>
-    <!-- Kalshi custom fields here -->
+
+    <!-- Kalshi custom fields -->
+
+    <!-- Additional fields needed -->
+    <field number="20111" name="NoCollateralAmountChanges" type="NUMINGROUP"/>
+    <field number="20112" name="CollateralAmountChange" type="AMT"/>
+    <field number="20113" name="CollateralAmountType" type="INT">
+      <value enum="1" description="BALANCE"/>
+      <value enum="2" description="PAYOUT"/>
+    </field>
+
+    <field number="1703" name="NoCollateralAmounts" type="NUMINGROUP"/>
+    <field number="1704" name="CurrentCollateralAmount" type="AMT"/>
+    <field number="1706" name="CollateralType" type="STRING">
+      <value enum="BALANCE" description="BALANCE"/>
+      <value enum="PAYOUT" description="PAYOUT"/>
+    </field>
     <field number="2964" name="SelfTradePreventionType" type="INT">
       <value enum="1" description="TAKERATCROSS"/>
       <value enum="2" description="MAKER"/>
+    </field>
+    <field number="20105" name="MarketSettlementReportID" type="STRING"/>
+    <field number="20106" name="TotNumMarketSettlementReports" type="INT"/>
+    <field number="20107" name="MarketResult" type="STRING"/>
+    <field number="20108" name="NoMarketSettlementPartyIDs" type="NUMINGROUP"/>
+    <field number="20109" name="MarketSettlementPartyID" type="STRING"/>
+    <field number="20110" name="MarketSettlementPartyRole" type="INT">
+      <value enum="24" description="CUSTOMER_ACCOUNT"/>
+    </field>
+    <field number="20126" name="ListenerSession" type="BOOLEAN"/>
+    <field number="21001" name="BeginExecID" type="STRING"/>
+    <field number="21002" name="EndExecID" type="STRING"/>
+    <field number="21003" name="SkipPendingExecReports" type="BOOLEAN"/>
+    <field number="21004" name="EventResendRejectReason" type="INT">
+      <value enum="1" description="TOO_MANY_RESEND_REQUESTS"/>
+      <value enum="2" description="SERVER_ERROR"/>
+      <value enum="3" description="BEGIN_EXEC_ID_TOO_SMALL"/>
+      <value enum="4" description="END_EXEC_ID_TOO_LARGE"/>
     </field>
 
     <!-- standard fields -->
