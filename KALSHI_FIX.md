@@ -10,7 +10,7 @@ Pushing a branch of quickfix-j
 mvn clean install -pl quickfixj-codegenerator,quickfixj-dictgenerator,quickfixj-class-pruner-maven-plugin -am -DskipTests -DskipAT=true -Dmaven.javadoc.skip=true -Dmaven.site.skip=true -f pom.xml
 
 # Build the 'orchestrate' plugin, (one time step)
-mvn install -f pom.xml
+cd quickfixj-orchestration; mvn install -f pom.xml; cd ..
 
 # build the 'quickfixj-messages-all-SNAPSHOT-3.0.0.jar'
 mvn package -DskipTests -DskipAT=true -Dmaven.javadoc.skip=true -Dmaven.site.skip=true -f pom.xml
