@@ -29,11 +29,11 @@ These runners kick off Maven from IntelliJ, and mimic the steps in shell above.
 3. Run the "Install to push to local Maven Repo, and can reference"
 
 ```xml
- <dependency>
+    <dependency>
         <groupId>org.quickfixj</groupId>
         <artifactId>quickfixj-messages-all</artifactId>
         <version>3.0.0-SNAPSHOT</version>
- </dependency>
+    </dependency>
 ```
 
 
