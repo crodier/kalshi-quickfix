@@ -57,7 +57,7 @@ public class DefaultMessageFactoryTest {
         assertMessage(quickfix.fix50.Email.class, MsgType.EMAIL, factory.create(BEGINSTRING_FIXT11, new ApplVerID(ApplVerID.FIX50), MsgType.EMAIL));
         assertMessage(quickfix.fix50sp1.Email.class, MsgType.EMAIL, factory.create(BEGINSTRING_FIXT11, new ApplVerID(ApplVerID.FIX50SP1), MsgType.EMAIL));
         assertMessage(quickfix.fix50sp2.Email.class, MsgType.EMAIL, factory.create(BEGINSTRING_FIXT11, new ApplVerID(ApplVerID.FIX50SP2), MsgType.EMAIL));
-        assertMessage(quickfix.fixlatest.Email.class, MsgType.EMAIL, factory.create(BEGINSTRING_FIXT11, new ApplVerID(ApplVerID.FIXLATEST), MsgType.EMAIL));
+        assertMessage(quickfix.fixlatest.Email.class, MsgType.EMAIL, factory.create(BEGINSTRING_FIXT11, new ApplVerID(ApplVerID.FIX50SP2), MsgType.EMAIL));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class DefaultMessageFactoryTest {
                 {ApplVerID.FIX50, quickfix.fix50.Email.class},
                 {ApplVerID.FIX50SP1, quickfix.fix50sp1.Email.class},
                 {ApplVerID.FIX50SP2, quickfix.fix50sp2.Email.class},
-                {ApplVerID.FIXLATEST, quickfix.fixlatest.Email.class}
+                {ApplVerID.FIX50SP2, quickfix.fixlatest.Email.class}
         };
     }
 }

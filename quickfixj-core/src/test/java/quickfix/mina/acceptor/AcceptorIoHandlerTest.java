@@ -114,7 +114,7 @@ public class AcceptorIoHandlerTest {
         final SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIXT11, "SENDER",
                 "TARGET");
         final UnitTestApplication unitTestApplication = new UnitTestApplication();
-        try (Session session = SessionFactoryTestSupport.createSession(sessionID, unitTestApplication, false, false, true, true, new DefaultApplVerID(DefaultApplVerID.FIX50SP2))) {
+        try (Session session = SessionFactoryTestSupport.createSession(sessionID, unitTestApplication, false, false, true, true, new DefaultApplVerID("FIX50SP2"))) {
             when(mockIoSession.getAttribute("QF_SESSION")).thenReturn(null);    // to create a new Session
 
             final HashMap<SessionID, Session> acceptorSessions = new HashMap<>();

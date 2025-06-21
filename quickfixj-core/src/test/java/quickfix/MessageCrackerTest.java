@@ -230,7 +230,7 @@ public class MessageCrackerTest {
     @Test
     public void testFixtMessageCrackingWithFixLatestApplVerID() throws Exception {
         quickfix.fixlatest.Email message = createFixLatestEmail();
-        message.getHeader().setString(ApplVerID.FIELD, ApplVerID.FIXLATEST);
+        message.getHeader().setString(ApplVerID.FIELD, ApplVerID.FIX50SP2);
 
         MessageCracker cracker = new MessageCracker() {
             @SuppressWarnings("unused")
