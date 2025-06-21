@@ -15,6 +15,8 @@ mvn install -f pom.xml
 # build the 'quickfixj-messages-all-SNAPSHOT-3.0.0.jar'
 mvn package -DskipTests -DskipAT=true -Dmaven.javadoc.skip=true -Dmaven.site.skip=true -f pom.xml
 
+# install as version 4.0.0 to avoid any ambiguity with default 3.0.0
+mvn install -Dproject.version=4.0.0 -DskipTests -DskipAT=true -Dmaven.javadoc.skip=true -Dmaven.site.skip=true -f pom.xml
 ```
 
 ### Steps to build in IntelliJ
@@ -24,6 +26,16 @@ These runners kick off Maven from IntelliJ, and mimic the steps in shell above.
 1. Run the "INSTALL CODE GENERATOR" intellJ runner
 1. Run the "2nd Install Orchestration" intelilJ runner
 2. Run the "LASTLY - quickfix..." intelliJ runner
+3. Run the "Install to push to local Maven Repo, and can reference"
+
+```xml
+ <dependency>
+        <groupId>org.quickfixj</groupId>
+        <artifactId>quickfixj-messages-all</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+ </dependency>
+```
+
 
 ### Code Changes (Notes)
 
