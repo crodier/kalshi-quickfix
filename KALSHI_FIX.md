@@ -54,14 +54,14 @@ These runners kick off Maven from IntelliJ, and mimic the steps in shell above.
 
 #### Problem 1 - 21003 re-used
 
-1. **Kalshi problem / question** On one Drop Copy Tag (not urgent)
-**Tag 21003** is duplicated Ctrl-F in PEF for this tag) for 
-   3. SkipPendingExecReports and 
-   4. ResentEventCount.
+1. On one Drop Copy Tag (not urgent)
+**Tag 21003** is duplicated Ctrl-F in PDF for this tag) for 
+   1. **SkipPendingExecReports** and also
+   1. **ResentEventCount.**
    
-For now, I comment out the ResetEventCount as it is catastrophe drop copy related.
+For now, I comment out the *ResetEventCount* as it is catastrophe drop copy related, not needed Day 1.
 
-There may be a workaround but it is inconvenient to have this field number overloaded.
+There may be a workaround; however, it is inconvenient to have this field number overloaded.
 
 #### Problem 2 - MiscFees should be MiscFeesGrp
 
@@ -78,6 +78,6 @@ Note: There's a typo in the PDF where tag 532 is labeled as
 
 But the description says "Indicates why Order Mass Cancel Request was rejected"
 
-so this should be MassCancelReject**Reason**.
+Should this be MassCancelReject**Reason**?
 
 
