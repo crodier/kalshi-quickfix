@@ -323,7 +323,7 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<argLine>
-								-Xmx2g -Djava.net.preferIPv4Stack=true
+								-Xmx2g -Djava.net.preferIPv4Stack=true -XX:MaxMetaspaceSize=512m
 								--add-opens java.base/java.lang=ALL-UNNAMED
 							</argLine>
 							<trimStackTrace>false</trimStackTrace>

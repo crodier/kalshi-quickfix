@@ -125,6 +125,9 @@
     </component>
   </components>
   <fields>
+    <field number="20126" name="ListenerSession" type="BOOLEAN"/>
+    <field number="21003" name="SkipPendingExecReports" type="BOOLEAN"/>
+
     <field number="7" name="BeginSeqNo" type="SEQNUM"/>
     <field number="8" name="BeginString" type="STRING"/>
     <field number="9" name="BodyLength" type="LENGTH"/>

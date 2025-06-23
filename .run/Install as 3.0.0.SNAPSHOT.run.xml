@@ -27,7 +27,6 @@
           <option name="goals">
             <list>
               <option value="install" />
-              <option value="-Dproject.version=4.0.0" />
               <option value="-DskipTests" />
               <option value="-DskipAT=true" />
               <option value="-Dmaven.javadoc.skip=true" />
